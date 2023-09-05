@@ -1,0 +1,50 @@
+{
+    "files.autoSave": "afterDelay",
+    "workbench.startupEditor": "none",
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 1,
+
+
+    "breadcrumbs.enabled": false,
+    "editor.lineNumbers": "relative",
+
+    // VIMRC
+    "vim.leader": "<Space>",
+    "vim.hlsearch": true,
+
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // NAVIGATION
+            // switch b/w buffers
+            { "before": ["<S-h>"], "commands": [":bprevious"] },
+            { "before": ["<S-l>"], "commands": [":bnext"] },
+
+            // splits
+            { "before": ["leader", "v"], "commands": [":vsplit"] },
+            { "before": ["leader", "s"], "commands": [":split"] },
+
+            // panes
+            {
+            "before": ["leader", "h"],
+            "commands": ["workbench.action.focusLeftGroup"]
+            },
+            {
+            "before": ["leader", "j"],
+            "commands": ["workbench.action.focusBelowGroup"]
+            },
+            {
+            "before": ["leader", "k"],
+            "commands": ["workbench.action.focusAboveGroup"]
+            },
+            {
+            "before": ["leader", "l"],
+            "commands": ["workbench.action.focusRightGroup"]
+            }
+    ],
+    "vim.visualModeKeyBindings": [
+        // Stay in visual mode while indenting
+        { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+        { "before": [">"], "commands": ["editor.action.indentLines"] },
+        // toggle comment selection
+        { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
+  ],
+}
