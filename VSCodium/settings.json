@@ -4,6 +4,11 @@
     "editor.minimap.enabled": false,
     "window.zoomLevel": 1,
 
+    "editor.fontSize": 20,
+    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace",
+    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace",
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.fontFamily": "'Source Code Pro', 'monospace', monospace",
 
     "breadcrumbs.enabled": false,
     "editor.lineNumbers": "relative",
