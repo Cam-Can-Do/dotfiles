@@ -1,0 +1,19 @@
+#!/bin/bash
+
+current_workspace=$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused == true).num')
+next_workspace=$((current_workspace + 1))
+
+# Check if the next workspace exists
+if i3-msg -t get_workspaces | jq ".[] | select(.num == $next_workspace)" > /dev/null; then
+    # Check if the next workspace has any windows
+    if i3-msg -t get_tree | jq ".nodes[].nodes[].nodes[] | select(.workspace == \"$next_workspace\") | .nodes" | grep -q "nodes"; then
+        echo "Next Workspace ($next_workspace) Has Windows"
+    else
+        echo "Next Workspace ($next_workspace) Is Empty"
+    fi
+    # Move to the next workspace
+    echo "Moving to Next Workspace: $next_workspace"
+    i3-msg workspace $next_workspace
+else
+    echo "Next Workspace Does Not Exist"
+fi

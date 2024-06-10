@@ -1,0 +1,19 @@
+#!/bin/bash
+
+previous_workspace=$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused == true).num')
+if [ $previous_workspace -gt 1 ] && [ $previous_workspace -ne 11 ]; then
+    previous_workspace=$((previous_workspace - 1))
+
+    # Check if the previous workspace has any windows
+    if i3-msg -t get_tree | jq ".nodes[].nodes[].nodes[] | select(.workspace == \"$previous_workspace\") | .nodes" | grep -q "nodes"; then
+        echo "Previous Workspace ($previous_workspace) Has Windows"
+    else
+        echo "Previous Workspace ($previous_workspace) Is Empty"
+    fi
+
+    # Move to the previous workspace
+    echo "Moving to Previous Workspace: $previous_workspace"
+    i3-msg workspace $previous_workspace
+else
+    echo "Previous Workspace Does Not Exist"
+fi

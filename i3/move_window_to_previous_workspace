@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import i3ipc
+
+def move_container_to_previous_workspace(i3):
+    # Get information about the currently focused container (window)
+    focused = i3.get_tree().find_focused()
+
+    # Get the current workspace
+    current_workspace = focused.workspace().num
+
+    # Check if the current workspace number is greater than 1
+    if current_workspace > 1 or current_workspace > 11:
+        # Calculate the number of the previous workspace
+        previous_workspace = current_workspace - 1
+
+        # Move the focused container to the previous workspace
+        i3.command(f"move container to workspace number {previous_workspace}")
+
+        # Focus the newly moved container
+        i3.command(f"workspace number {previous_workspace}")
+
+if __name__ == "__main__":
+    # Create an instance of the i3 IPC connection
+    i3 = i3ipc.Connection()
+
+    # Call the function to move the current window to the previous workspace
+    move_container_to_previous_workspace(i3)
+
+    # Close the IPC connection
+    i3.main_quit()

@@ -1,0 +1,335 @@
+# Inspired by: SkyyySi's Nordic i3 config file
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+### Variables for settings (This makes changing them WAY easier!) ###
+set $mod                             Mod4
+set $alt			     			 Mod1
+set $smod                            Shift
+set $wm_setting_font                 pango:Source Sans Pro, Semibold 11
+set $wm_setting_gap_width            5
+set $wm_setting_gap_heigth           5
+set $wm_setting_border_size          5
+set $wm_setting_key_left             h
+set $wm_setting_key_down             j
+set $wm_setting_key_up               k
+set $wm_setting_key_right            l
+
+set $wm_setting_app_terminal         alacritty
+set $wm_setting_app_browser          brave-browser
+set $wm_setting_app_text_editor		 code
+set $wm_setting_app_notes	logseq_sync_wrapper.sh
+set $wm_setting_app_password_manager ~/Bitwarden*.AppImage
+set $wm_setting_app_launcher         rofi -show drun
+set $wm_setting_app_compositor       picom
+
+set $wm_color_border_active_bg       #81A1C1
+set $wm_color_border_active_fg       #3B4252
+set $wm_color_border_inactive_bg     #3B4252
+set $wm_color_border_inactive_fg     #D8DEE9
+set $wm_color_background             #2E3440
+
+set $bar_setting_position            bottom
+set $bar_setting_mode                dock
+set $bar_setting_font                pango:Source Sans Pro, Semibold 9
+set $bar_setting_separator           " - "
+set $bar_setting_statusCommand       i3status
+
+set $bar_setting_trayoutput          full
+
+set $bar_color_background            #2E3440
+set $bar_color_foreground            #D8DEE9
+set $bar_color_statusline            #D8DEE9
+set $bar_color_separator             #D8DEE9
+
+set $bar_color_workspace_focused_bg  #3B4252
+set $bar_color_workspace_focused_fg  #FFC0CB
+set $bar_color_workspace_active_bg   #3B4252
+set $bar_color_workspace_active_fg   #FFB6C1
+set $bar_color_workspace_inactive_bg #3B4252
+set $bar_color_workspace_inactive_fg #FF69B4
+set $bar_color_workspace_urgent_bg   #3B4252
+set $bar_color_workspace_urgent_fg   #FF1493
+
+
+
+focus_wrapping no
+
+### STARTUP ###
+
+# Adjust mouse speed
+exec_always xinput --set-prop "Kingston HyperX Pulsefire Surge" 'libinput Accel Speed' -1
+
+
+# autotiling: https://github.com/nwg-piotr/autotiling
+exec_always ~/.config/i3/autotiling
+
+# Set displays and resolutions
+exec_always ~/.config/i3/desk_setup.sh
+
+# Display Wallpaper
+exec_always feh --bg-fill --randomize --no-startup-id ~/.wallpapers/*
+
+# Apply blue light filter
+exec_always redshift -PO 2500
+
+# If this isn't run, copy to clipboard won't work
+exec_always nohup flameshot &
+
+### Applications ###
+# Start a terminal emulator
+bindsym $mod+n exec $wm_setting_app_terminal
+
+# Start a web browser
+bindsym $mod+b exec $wm_setting_app_browser
+
+# Open notes
+bindsym $mod+Ctrl+l exec $wm_setting_app_notes
+
+# Open file manager
+bindsym $mod+f exec thunar ~
+
+# Open text editor
+bindsym $mod+c exec $wm_setting_app_text_editor
+
+# Open password manager
+bindsym $mod+p exec $wm_setting_app_password_manager
+
+# Start a program launcher
+bindsym $mod+d exec $wm_setting_app_launcher
+
+# Take screenshot
+bindsym $mod+$smod+s exec flameshot gui
+
+# Language OCR
+bindsym $mod+$smod+a exec --no-startup-id ~/ocr_on_demand/venv/bin/python3 ~/ocr_on_demand/main.py
+
+# Run a window compositor (for effects like transparency or full VSync)
+#exec_always --no-startup-id $wm_setting_app_compositor
+
+### MEDIA CONTROLS ###
+# run `sudo apt install pulseaudio-utils` first
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+### MONITORS ###
+set $fm HDMI-1-0
+set $sm eDP-1
+
+### WORKSPACES ###
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+
+workspace $ws1 output $fm
+workspace $ws2 output $fm
+workspace $ws3 output $fm
+workspace $ws4 output $fm
+workspace $ws5 output $fm
+workspace $ws6 output $fm
+workspace $ws7 output $fm
+workspace $ws8 output $fm
+workspace $ws9 output $fm
+workspace $ws10 output $fm
+
+workspace $ws11 output $sm
+workspace $ws12 output $sm
+workspace $ws13 output $sm
+workspace $ws14 output $sm
+workspace $ws15 output $sm
+workspace $ws16 output $sm
+workspace $ws17 output $sm
+workspace $ws18 output $sm
+workspace $ws19 output $sm
+workspace $ws20 output $sm
+
+
+
+# Define a workspace switch event handler
+# This will be triggered whenever you switch to a workspace
+#workspace_auto_back_and_forth yes
+
+# Switch to workspace n
+#bindsym $mod+1 workspace $ws11; workspace $ws1
+#bindsym $mod+2 workspace $ws12; workspace $ws2
+#bindsym $mod+3 workspace $ws13; workspace $ws3
+#bindsym $mod+4 workspace $ws14; workspace $ws4
+#bindsym $mod+5 workspace $ws15; workspace $ws5
+#bindsym $mod+6 workspace $ws16; workspace $ws6
+#bindsym $mod+7 workspace $ws17; workspace $ws7
+#bindsym $mod+8 workspace $ws18; workspace $ws8
+#bindsym $mod+9 workspace $ws19; workspace $ws9
+#bindsym $mod+0 workspace $ws20; workspace $ws10
+
+
+# Move focus to next/previous workspace
+bindsym $mod+Prior exec ~/.config/i3/move_focus_to_previous_workspace
+bindsym $mod+Next exec ~/.config/i3/move_focus_to_next_workspace
+
+
+#bindsym $mod+Prior workspace next
+
+# Move focused container to workspace n
+bindsym $mod+$smod+1 move container to workspace $ws1
+bindsym $mod+$smod+2 move container to workspace $ws2
+bindsym $mod+$smod+3 move container to workspace $ws3
+bindsym $mod+$smod+4 move container to workspace $ws4
+bindsym $mod+$smod+5 move container to workspace $ws5
+bindsym $mod+$smod+6 move container to workspace $ws6
+bindsym $mod+$smod+7 move container to workspace $ws7
+bindsym $mod+$smod+8 move container to workspace $ws8
+bindsym $mod+$smod+9 move container to workspace $ws9
+bindsym $mod+$smod+0 move container to workspace $ws10
+
+# Move focused container to next/previous workspace
+bindsym $mod+$alt+Prior exec ~/.config/i3/move_window_to_previous_workspace
+bindsym $mod+$alt+Next exec ~/.config/i3/move_window_to_next_workspace
+
+# Moving window between screens 
+bindsym $mod+$alt+$wm_setting_key_left move container to output left; focus left;
+bindsym $mod+$alt+$wm_setting_key_right move container to output right; focus right;
+
+#bindsym $mod+$smod+h move container to output left; focus left; layout splith;
+#bindsym $mod+$smod+l move container to output right; focus right; layout splith;
+
+### Window sizes and positions ###
+# Change focus
+bindsym $mod+$wm_setting_key_left        focus left
+bindsym $mod+$wm_setting_key_down        focus down
+bindsym $mod+$wm_setting_key_up          focus up
+bindsym $mod+$wm_setting_key_right       focus right
+
+
+# Resize window (you can also use the mouse for that)
+mode "modify" {
+#	These bindings trigger as soon as you enter the modify mode
+
+#	Pressing left will shrink the window’s width.
+#	Pressing right will grow the window’s width.
+#	Pressing up will shrink the window’s height.
+#	Pressing down will grow the window’s height.
+	bindsym $smod+$wm_setting_key_left  resize shrink width 10 px or 10 ppt
+	bindsym $smod+$wm_setting_key_down  resize grow height 10 px or 10 ppt
+	bindsym $smod+$wm_setting_key_up    resize shrink height 10 px or 10 ppt
+	bindsym $smod+$wm_setting_key_right resize grow width 10 px or 10 ppt
+
+#	Resize the gap width and height
+	bindsym $smod+$wm_setting_key_left  gaps horizontal minus 5
+	bindsym $smod+$wm_setting_key_down  gaps horizontal plus 5
+	bindsym $smod+$wm_setting_key_up    gaps vertical minus 5
+	bindsym $smod+$wm_setting_key_right gaps vertical plus 5
+
+	# Move focused window
+	bindsym $wm_setting_key_left  move left
+	bindsym $wm_setting_key_down  move down
+	bindsym $wm_setting_key_up    move up
+	bindsym $wm_setting_key_right move right
+
+#	Back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+Return mode "modify"
+
+### Gaps ###
+gaps horizontal $wm_setting_gap_width
+gaps vertical   $wm_setting_gap_heigth
+smart_gaps on
+
+### Borders ###
+default_border pixel $wm_setting_border_size
+default_floating_border pixel $wm_setting_border_size
+smart_borders on
+
+### Colors ###
+# class                 border                       background                   text                         indicator                    child_border
+client.focused          $wm_color_border_active_bg   $wm_color_border_active_bg   $wm_color_border_active_fg   $wm_color_border_active_bg   $wm_color_border_active_bg
+client.focused_inactive $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.unfocused        $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.urgent           $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.placeholder      $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.background       $wm_color_background
+
+### i3bar ###
+bar {
+	#output		 $fm
+	position         $bar_setting_position
+	mode             $bar_setting_mode
+	font             $bar_setting_font
+	separator_symbol $bar_setting_separator
+	status_command   $bar_setting_statusCommand
+	tray_output      $bar_setting_trayoutput
+
+	colors {
+		background   $bar_color_background
+		statusline   $bar_color_statusline
+		separator    $bar_color_separator
+
+		focused_workspace  $bar_color_workspace_focused_bg  $bar_color_workspace_focused_bg  $bar_color_workspace_focused_fg
+		active_workspace   $bar_color_workspace_active_bg   $bar_color_workspace_active_bg   $bar_color_workspace_active_fg
+		inactive_workspace $bar_color_workspace_inactive_bg $bar_color_workspace_inactive_bg $bar_color_workspace_inactive_fg
+		urgent_workspace   $bar_color_workspace_urgent_bg   $bar_color_workspace_urgent_bg   $bar_color_workspace_urgent_fg
+	}
+}
+
+bindsym $mod+$alt+b exec --no-startup-id i3-msg bar mode toggle
+#bindsym $mod+Shift+m exec --no-startup-id i3-msg bar mode toggle
+
+### FLOATING EXCEPTIONS ###
+for_window [class="PenTablet" instance="PenTablet"] floating enable
+#for_window [class="Bitwarden" instance="bitwarden"] floating enable
+#for_window [class="discord" instance="discord"] floating enable
+
+### Miscellaneous settings ###
+# Set the font used for titlebars (which are hidden here)
+font $wm_setting_font
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Enter fullscreen mode for the focused window
+bindsym $mod+x fullscreen toggle
+
+# Toggle between tiling and floating
+bindsym $mod+$smod+f floating toggle
+
+# Kill the focused window
+bindsym $mod+BackSpace kill
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+$alt+r restart
+
+bindsym $mod+$smod+x exec --no-startup-id i3lock -i ~/Pictures/Wallpapers/.wallpapers/sakamoto_inverted.png -t -u
+
+# Open config file in text editor
+bindsym $mod+$smod+c exec $wm_setting_app_text_editor ~/.config/i3/
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+$smod+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
