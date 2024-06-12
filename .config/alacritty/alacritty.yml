@@ -120,7 +120,7 @@ window:
 font:
   # Normal (roman) font face
   normal:
-    family: monospace
+    family: Source Code Pro
     style:  Regular
     # Font family
     #
