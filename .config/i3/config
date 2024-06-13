@@ -67,10 +67,10 @@ exec_always xinput --set-prop "Kingston HyperX Pulsefire Surge" 'libinput Accel 
 exec_always ~/.config/i3/scripts/autotiling
 
 # Set displays and resolutions
-exec_always ~/.config/i3/desk_setup.sh
+exec_always ~/.config/i3/scripts/desk_setup.sh --no-startup-id
 
 # Display Wallpaper
-exec_always feh --bg-fill --randomize --no-startup-id ~/.config/wallpapers/*
+exec_always feh --bg-fill --randomize ~/.config/wallpapers/* --no-startup-id
 
 # Apply blue light filter
 exec_always redshift -PO 2500
@@ -150,15 +150,15 @@ set $ws18 "18"
 set $ws19 "19"
 set $ws20 "20"
 
-workspace $ws1 output $side_monitor $main_monitor
+workspace $ws1 output $main_monitor
 workspace $ws2 output $main_monitor
-workspace $ws3 output $side_monitor $main_monitor 
+workspace $ws3 output $main_monitor 
 workspace $ws4 output $main_monitor
-workspace $ws5 output $side_monitor $main_monitor
+workspace $ws5 output $main_monitor
 workspace $ws6 output $main_monitor
-workspace $ws7 output $side_monitor $main_monitor
+workspace $ws7 output $main_monitor
 workspace $ws8 output $main_monitor
-workspace $ws9 output $side_monitor $main_monitor
+workspace $ws9 output $main_monitor
 workspace $ws10 output $main_monitor
 
 workspace $ws11 output $side_monitor
