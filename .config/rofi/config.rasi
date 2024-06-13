@@ -8,8 +8,8 @@ configuration{
     disable-history: false;
     hide-scrollbar: true;
     display-combi: " 🖥️  All ";
-    display-run: " 🏃  Run ";
-    display-window: " 🪟  Window";
+    display-run: "Run";
+    display-window: "Window";
     sidebar-mode: true;
 }
 

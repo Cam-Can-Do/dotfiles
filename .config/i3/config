@@ -1,58 +1,61 @@
 # Inspired by: SkyyySi's Nordic i3 config file
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# See https://i3wm.org/docs/userguide.html for a complete reference!
 
 ### Variables for settings (This makes changing them WAY easier!) ###
 set $mod                             Mod4
-set $alt			     			 Mod1
+set $alt			     									 Mod1
 set $smod                            Shift
-set $wm_setting_font                 pango:Source Sans Pro, Semibold 11
+set $wm_setting_font                 pango:Monospace, Semibold 11
 set $wm_setting_gap_width            5
 set $wm_setting_gap_heigth           5
-set $wm_setting_border_size          5
+set $wm_setting_border_size          2
 set $wm_setting_key_left             h
 set $wm_setting_key_down             j
 set $wm_setting_key_up               k
 set $wm_setting_key_right            l
 
-set $wm_setting_app_terminal         alacritty
-set $wm_setting_app_browser          brave-browser
-set $wm_setting_app_text_editor		 code
-set $wm_setting_app_notes	logseq_sync_wrapper.sh
-set $wm_setting_app_password_manager ~/Bitwarden*.AppImage
-set $wm_setting_app_launcher         rofi -show drun
-set $wm_setting_app_compositor       picom
+set $wm_setting_app_terminal      	  alacritty
+set $wm_setting_app_browser       	  brave-browser
+set $wm_setting_app_text_editor		 		code
+set $wm_setting_app_notes							logseq_sync_wrapper.sh
+set $wm_setting_app_password_manager 	~/Bitwarden*.AppImage
+set $wm_setting_app_launcher      	  rofi -show drun
+set $wm_setting_app_compositor    	  picom
 
-set $wm_color_border_active_bg       #81A1C1
+set $wm_color_border_active_bg       #b2cdff
 set $wm_color_border_active_fg       #3B4252
 set $wm_color_border_inactive_bg     #3B4252
 set $wm_color_border_inactive_fg     #D8DEE9
 set $wm_color_background             #2E3440
 
-set $bar_setting_position            bottom
+set $bar_setting_position            top
 set $bar_setting_mode                dock
-set $bar_setting_font                pango:Source Sans Pro, Semibold 9
+set $bar_setting_font                pango:Source Sans Pro, Semibold 10
 set $bar_setting_separator           " - "
 set $bar_setting_statusCommand       i3status
 
 set $bar_setting_trayoutput          full
 
-set $bar_color_background            #2E3440
-set $bar_color_foreground            #D8DEE9
+set $bar_color_background            #1e1e2e
+set $bar_color_foreground            #181825
 set $bar_color_statusline            #D8DEE9
 set $bar_color_separator             #D8DEE9
 
-set $bar_color_workspace_focused_bg  #3B4252
-set $bar_color_workspace_focused_fg  #FFC0CB
-set $bar_color_workspace_active_bg   #3B4252
-set $bar_color_workspace_active_fg   #FFB6C1
-set $bar_color_workspace_inactive_bg #3B4252
-set $bar_color_workspace_inactive_fg #FF69B4
-set $bar_color_workspace_urgent_bg   #3B4252
-set $bar_color_workspace_urgent_fg   #FF1493
+# For the focused workspace
+set $bar_color_workspace_focused_bg  #447cff
+set $bar_color_workspace_focused_fg  #FFFFFF
 
+# For active but not focused workspaces (like other monitor)
+set $bar_color_workspace_active_bg   #779bef
+set $bar_color_workspace_active_fg   #FFFFFF
 
+set $bar_color_workspace_inactive_bg #000000
+set $bar_color_workspace_inactive_fg #FFFFFF
 
+set $bar_color_workspace_urgent_bg   #1e1e2e
+set $bar_color_workspace_urgent_fg   #181825
+
+# Prevents focus from wrapping around when you reach the end of the workspace list
 focus_wrapping no
 
 ### STARTUP ###
@@ -60,20 +63,19 @@ focus_wrapping no
 # Adjust mouse speed
 exec_always xinput --set-prop "Kingston HyperX Pulsefire Surge" 'libinput Accel Speed' -1
 
-
 # autotiling: https://github.com/nwg-piotr/autotiling
-exec_always ~/.config/i3/autotiling
+exec_always ~/.config/i3/scripts/autotiling
 
 # Set displays and resolutions
 exec_always ~/.config/i3/desk_setup.sh
 
 # Display Wallpaper
-exec_always feh --bg-fill --randomize --no-startup-id ~/.wallpapers/*
+exec_always feh --bg-fill --randomize --no-startup-id ~/.config/wallpapers/*
 
 # Apply blue light filter
 exec_always redshift -PO 2500
 
-# If this isn't run, copy to clipboard won't work
+# Required to be able to copy screenshots to clipboard
 exec_always nohup flameshot &
 
 ### Applications ###
@@ -101,18 +103,19 @@ bindsym $mod+d exec $wm_setting_app_launcher
 # Take screenshot
 bindsym $mod+$smod+s exec flameshot gui
 
-# Language OCR
-bindsym $mod+$smod+a exec --no-startup-id ~/ocr_on_demand/venv/bin/python3 ~/ocr_on_demand/main.py
+# Start Language OCR program
+# https://github.com/Cam-Can-Do/ocr_on_demand.git
+# bindsym $mod+$smod+a exec --no-startup-id ~/ocr_on_demand/venv/bin/python3 ~/ocr_on_demand/main.py
 
 # Run a window compositor (for effects like transparency or full VSync)
 exec_always --no-startup-id $wm_setting_app_compositor
 
 ### MEDIA CONTROLS ###
-# run `sudo apt install pulseaudio-utils` first
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+# These don't work yet...
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 #bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
@@ -120,8 +123,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 #bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 ### MONITORS ###
-set $fm HDMI-1-0
-set $sm eDP-1
+set $main_monitor HDMI-1-0
+set $side_monitor eDP-1
 
 ### WORKSPACES ###
 # Define names for default workspaces for which we configure key bindings later on.
@@ -147,27 +150,27 @@ set $ws18 "18"
 set $ws19 "19"
 set $ws20 "20"
 
-workspace $ws1 output $fm
-workspace $ws2 output $fm
-workspace $ws3 output $fm
-workspace $ws4 output $fm
-workspace $ws5 output $fm
-workspace $ws6 output $fm
-workspace $ws7 output $fm
-workspace $ws8 output $fm
-workspace $ws9 output $fm
-workspace $ws10 output $fm
+workspace $ws1 output $side_monitor $main_monitor
+workspace $ws2 output $main_monitor
+workspace $ws3 output $side_monitor $main_monitor 
+workspace $ws4 output $main_monitor
+workspace $ws5 output $side_monitor $main_monitor
+workspace $ws6 output $main_monitor
+workspace $ws7 output $side_monitor $main_monitor
+workspace $ws8 output $main_monitor
+workspace $ws9 output $side_monitor $main_monitor
+workspace $ws10 output $main_monitor
 
-workspace $ws11 output $sm
-workspace $ws12 output $sm
-workspace $ws13 output $sm
-workspace $ws14 output $sm
-workspace $ws15 output $sm
-workspace $ws16 output $sm
-workspace $ws17 output $sm
-workspace $ws18 output $sm
-workspace $ws19 output $sm
-workspace $ws20 output $sm
+workspace $ws11 output $side_monitor
+workspace $ws12 output $side_monitor
+workspace $ws13 output $side_monitor
+workspace $ws14 output $side_monitor
+workspace $ws15 output $side_monitor
+workspace $ws16 output $side_monitor
+workspace $ws17 output $side_monitor
+workspace $ws18 output $side_monitor
+workspace $ws19 output $side_monitor
+workspace $ws20 output $side_monitor
 
 
 
@@ -279,7 +282,7 @@ client.background       $wm_color_background
 
 ### i3bar ###
 bar {
-	#output		 $fm
+	#output		 $main_monitor
 	position         $bar_setting_position
 	mode             $bar_setting_mode
 	font             $bar_setting_font
@@ -328,7 +331,7 @@ bindsym $mod+$alt+r restart
 
 bindsym $mod+$smod+x exec --no-startup-id i3lock -i ~/Pictures/Wallpapers/.wallpapers/sakamoto_inverted.png -t -u
 
-# Open config file in text editor
+# Open i3 config directory in text editor
 bindsym $mod+$smod+c exec $wm_setting_app_text_editor ~/.config/i3/
 
 # Exit i3 (logs you out of your X session)
