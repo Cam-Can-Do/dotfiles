@@ -6,9 +6,9 @@ TERM = "xterm-256color"
 [font]
 size = 18.0
 
-[font.normal]
-family = "HasklugNerdFont"
-style = "Regular"
+#[font.normal]
+#family = "HasklugNerdFont"
+#style = "Regular"
 
 [[keyboard.bindings]]
 action = "ResetFontSize"

@@ -69,6 +69,9 @@ exec_always ~/.config/i3/scripts/desk_setup.sh --no-startup-id
 # Display Wallpaper
 exec_always feh --bg-fill --randomize ~/.config/wallpapers/* --no-startup-id
 
+# Start nmcli (needed for ProtonVPN client to work)
+exec_always nm-applet
+
 # Apply blue light filter
 exec_always redshift -PO 2500
 
@@ -203,9 +206,9 @@ bindsym $mod+0 workspace $ws10
 
 # Assign certain apps to specific workspaces
 # assign [class="Discord"] workspace $ws6  # Incorrect class name
-assign [class="Brave-browser"] workspace $ws7
-assign [class="Code"] workspace $ws8
-assign [class="Alacritty"] workspace $ws9
+#assign [class="Brave-browser"] workspace $ws7
+#assign [class="Code"] workspace $ws8
+#assign [class="Alacritty"] workspace $ws9
 
 # Move focused container to workspace n
 bindsym $mod+$alt+1 move container to workspace $ws1; workspace $ws1;
