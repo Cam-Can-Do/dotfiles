@@ -14,7 +14,7 @@ set $wm_setting_key_right            l
 set $wm_setting_app_terminal      	  alacritty
 set $wm_setting_app_browser       	  brave-browser
 set $wm_setting_app_text_editor		 		code
-set $wm_setting_app_notes							~/Logseq*.AppImage
+set $wm_setting_app_notes							~/Obsidian*.AppImage
 set $wm_setting_app_password_manager 	~/Bitwarden*.AppImage
 set $wm_setting_app_launcher      	  rofi -show drun
 set $wm_setting_app_compositor    	  picom
@@ -87,7 +87,7 @@ bindsym $mod+v exec $wm_setting_app_browser --profile-directory="Default"
 bindsym $mod+s exec $wm_setting_app_browser --profile-directory="Profile 1"
 
 # Open notes
-bindsym $mod+Ctrl+l exec $wm_setting_app_notes
+bindsym $mod+$alt+n exec $wm_setting_app_notes
 
 # Open file manager
 bindsym $mod+f exec thunar ~
