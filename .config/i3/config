@@ -11,7 +11,7 @@ set $wm_setting_key_down             j
 set $wm_setting_key_up               k
 set $wm_setting_key_right            l
 
-set $wm_setting_app_terminal      	  alacritty
+set $wm_setting_app_terminal      	  kitty
 set $wm_setting_app_browser       	  brave-browser
 set $wm_setting_app_text_editor		 		code
 set $wm_setting_app_notes							~/Obsidian*.AppImage
@@ -80,7 +80,7 @@ exec_always nohup flameshot &
 
 ### Applications ###
 # Start a terminal emulator
-bindsym $mod+n exec $wm_setting_app_terminal
+bindsym $mod+n exec $wm_setting_app_terminal 
 
 # Start a web browser
 bindsym $mod+v exec $wm_setting_app_browser --profile-directory="Default"
@@ -120,9 +120,6 @@ exec_always --no-startup-id $wm_setting_app_compositor
 
 #exec --no-startup-id i3-msg 'workspace $ws6:Web; exec brave-browser --profile-directory="Default"'
 #assign [class="Brave-browser"] workspace $ws6
-
-exec --no-startup-id i3-msg '
-
 
 
 ### MEDIA CONTROLS ###
@@ -199,9 +196,9 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6 
-bindsym $mod+7 workspace $ws7; exec [ $(i3-save-tree --workspace $ws7 | grep Brave | wc -l) = 0 ] && $wm_setting_app_browser --profile-directory="Default" -s
-bindsym $mod+8 workspace $ws8; exec [ $(i3-save-tree --workspace $ws8 | grep Code | wc -l) = 0 ] && $wm_setting_app_text_editor
-bindsym $mod+9 workspace $ws9; exec [ $(i3-save-tree --workspace $ws9 | grep Alacritty | wc -l) = 0 ] && $wm_setting_app_terminal
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # Assign certain apps to specific workspaces
