@@ -2,7 +2,7 @@
 set $mod                             Mod4
 set $alt			     									 Mod1
 set $smod                            Shift
-set $wm_setting_font                 pango:Monospace, Semibold 11
+set $wm_setting_font                 pango:Hack, Semibold 11
 set $wm_setting_gap_width            5
 set $wm_setting_gap_heigth           5
 set $wm_setting_border_size          2
@@ -27,7 +27,7 @@ set $wm_color_background             #2E3440
 
 set $bar_setting_position            top
 set $bar_setting_mode                dock
-set $bar_setting_font                pango:Source Sans Pro, Semibold 10
+set $bar_setting_font                pango:Hack, Semibold 10
 set $bar_setting_separator           " - "
 set $bar_setting_statusCommand       i3status
 
