@@ -328,6 +328,7 @@ font $wm_setting_font
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+
 # Enter fullscreen mode for the focused window
 bindsym $mod+x fullscreen toggle
 
