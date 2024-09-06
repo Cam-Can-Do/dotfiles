@@ -116,6 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
-eval "$(zellij setup --generate-auto-start bash)"
+#eval "$(zellij setup --generate-auto-start bash)"
