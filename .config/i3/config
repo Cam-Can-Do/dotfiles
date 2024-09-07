@@ -57,8 +57,11 @@ focus_wrapping no
 
 ### STARTUP ###
 
-# Adjust mouse speed
+# Adjust mouse speed 
 exec_always xinput --set-prop "Kingston HyperX Pulsefire Surge" 'libinput Accel Speed' -1
+
+# Set mouse buttons (alternate between left and right handed)
+[ $(($(date +%d) % 2)) -eq 0 ] && xmodmap -e "pointer = 1 2 3" || xmodmap -e "pointer = 3 2 1"
 
 # autotiling: https://github.com/nwg-piotr/autotiling
 exec_always ~/.config/i3/scripts/autotiling
