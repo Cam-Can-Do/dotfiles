@@ -342,6 +342,9 @@ bindsym $mod+$smod+f floating toggle
 # Kill the focused window
 bindsym $mod+BackSpace kill
 
+# Invert colors
+bindsym $mod+i exec xrandr-invert-colors
+
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$smod+u restart
 
