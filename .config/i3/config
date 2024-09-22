@@ -89,6 +89,9 @@ bindsym $mod+n exec $wm_setting_app_terminal
 bindsym $mod+v exec $wm_setting_app_browser --profile-directory="Default"
 bindsym $mod+s exec $wm_setting_app_browser --profile-directory="Profile 1"
 
+# Open Anki
+bindsym $mod+a exec ~/anki*/anki
+
 # Open notes
 bindsym $mod+$alt+n exec $wm_setting_app_notes
 
