@@ -19,13 +19,13 @@ set $wm_setting_app_password_manager 	~/Bitwarden*.AppImage
 set $wm_setting_app_launcher      	  rofi -show drun
 set $wm_setting_app_compositor    	  picom
 
-set $wm_color_border_active_bg       #b2cdff
-set $wm_color_border_active_fg       #3B4252
-set $wm_color_border_inactive_bg     #3B4252
-set $wm_color_border_inactive_fg     #D8DEE9
-set $wm_color_background             #2E3440
+set $wm_color_border_active_bg       #ff69b4 
+set $wm_color_border_active_fg       #8a2be2 
+set $wm_color_border_inactive_bg     #8a2be2
+set $wm_color_border_inactive_fg     #dda0dd 
+set $wm_color_background             #2e0854
 
-set $bar_setting_position            top
+set $bar_setting_position            bottom
 set $bar_setting_mode                dock
 set $bar_setting_font                pango:Hack, Semibold 10
 set $bar_setting_separator           " - "
@@ -33,24 +33,24 @@ set $bar_setting_statusCommand       i3status
 
 set $bar_setting_trayoutput          full
 
-set $bar_color_background            #000000
-set $bar_color_foreground            #181825
-set $bar_color_statusline            #D8DEE9
-set $bar_color_separator             #D8DEE9
+set $bar_color_background            #2e0854 
+set $bar_color_foreground            #dda0dd
+set $bar_color_statusline            #ffb6c1 
+set $bar_color_separator             #ffb6c1
 
 # For the focused workspace
-set $bar_color_workspace_focused_bg  #447cff
-set $bar_color_workspace_focused_fg  #FFFFFF
+set $bar_color_workspace_focused_bg  #ff69b4 
+set $bar_color_workspace_focused_fg  #ffffff 
 
 # For active but not focused workspaces (such as shown but not active on other monitor)
-set $bar_color_workspace_active_bg   #779bef
-set $bar_color_workspace_active_fg   #FFFFFF
+set $bar_color_workspace_active_bg   #ffb6c1 
+set $bar_color_workspace_active_fg   #ffffff 
 
-set $bar_color_workspace_inactive_bg #000000
-set $bar_color_workspace_inactive_fg #FFFFFF
+set $bar_color_workspace_inactive_bg #8a2be2 
+set $bar_color_workspace_inactive_fg #ffffff 
 
-set $bar_color_workspace_urgent_bg   #1e1e2e
-set $bar_color_workspace_urgent_fg   #FFFFFF
+set $bar_color_workspace_urgent_bg   #ff1493 
+set $bar_color_workspace_urgent_fg   #ffffff 
 
 # Prevents focus from wrapping around when you reach the end of the workspace list
 focus_wrapping no
@@ -110,23 +110,10 @@ bindsym $mod+d exec $wm_setting_app_launcher
 # Take screenshot
 bindsym $mod+$smod+s exec flameshot gui
 
-# Start Language OCR program
-# https://github.com/Cam-Can-Do/ocr_on_demand.git
-# bindsym $mod+$smod+a exec --no-startup-id ~/ocr_on_demand/venv/bin/python3 ~/ocr_on_demand/main.py
-
 # Run a window compositor (for effects like transparency or full VSync)
 exec_always --no-startup-id $wm_setting_app_compositor
 
 ### STARTUP APPLICATIONS ###
-
-#TODO: Replace this with the method of either switching to a workspace or moving and opening the corresponging application
-# bindsym $mod+2 workspace 2:web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb -s
-# https://unix.stackexchange.com/questions/96798/i3wm-start-applications-on-specific-workspaces-when-i3-starts
-
-
-#exec --no-startup-id i3-msg 'workspace $ws6:Web; exec brave-browser --profile-directory="Default"'
-#assign [class="Brave-browser"] workspace $ws6
-
 
 ### MEDIA CONTROLS ###
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -145,8 +132,6 @@ set $main_monitor HDMI-1-0
 set $side_monitor eDP-1
 
 ### WORKSPACES ###
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1  "1"
 set $ws2  "2"
 set $ws3  "3"
@@ -157,18 +142,6 @@ set $ws7  "7"
 set $ws8  "8"
 set $ws9  "9"
 set $ws10 "10"
-
-
-set $ws11 "11"
-set $ws12 "12"
-set $ws13 "13"
-set $ws14 "14"
-set $ws15 "15"
-set $ws16 "16"
-set $ws17 "17"
-set $ws18 "18"
-set $ws19 "19"
-set $ws20 "20"
 
 workspace $ws1 output $side_monitor
 workspace $ws2 output $side_monitor
@@ -182,21 +155,6 @@ workspace $ws8 output $main_monitor
 workspace $ws9 output $main_monitor
 workspace $ws10 output $main_monitor
 
-#workspace $ws11 output $side_monitor
-#workspace $ws12 output $side_monitor
-#workspace $ws13 output $side_monitor
-#workspace $ws14 output $side_monitor
-#workspace $ws15 output $side_monitor
-#workspace $ws16 output $side_monitor
-#workspace $ws17 output $side_monitor
-#workspace $ws18 output $side_monitor
-#workspace $ws19 output $side_monitor
-#workspace $ws20 output $side_monitor
-
-# Switch to workspace n
-#bindsym $mod+2 workspace 2:web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb -s
-
-#bindsym $mod+q workspace $ws1; exec [ $(ps aux -C $wm_setting_app_browser | grep "Default" | wc -l) = 0 ] && $wm_setting_app_browser --profile-directory="Default" -s
 bindsym $mod+1 workspace $ws1; 
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -207,12 +165,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-
-# Assign certain apps to specific workspaces
-# assign [class="Discord"] workspace $ws6  # Incorrect class name
-#assign [class="Brave-browser"] workspace $ws7
-#assign [class="Code"] workspace $ws8
-#assign [class="Alacritty"] workspace $ws9
 
 # Move focused container to workspace n
 bindsym $mod+$alt+1 move container to workspace $ws1; workspace $ws1;
@@ -225,14 +177,6 @@ bindsym $mod+$alt+7 move container to workspace $ws7; workspace $ws7;
 bindsym $mod+$alt+8 move container to workspace $ws8;	workspace $ws8;
 bindsym $mod+$alt+9 move container to workspace $ws9; workspace $ws9;
 bindsym $mod+$alt+0 move container to workspace $ws10; workspace $ws10;
-
-# Move focus to next/previous workspace
-#bindsym $mod+Prior exec ~/dotfiles/.config/i3/scripts/move_focus_to_previous_workspace
-#bindsym $mod+Next exec ~/dotfiles/.config/i3/scripts/move_focus_to_next_workspace
-
-# Move focused container to next/previous workspace
-#bindsym $mod+$alt+Prior exec ~/dotfiles/.config/i3/scripts/move_window_to_previous_workspace
-#bindsym $mod+$alt+Next exec ~/dotfiles/.config/i3/scripts/move_window_to_next_workspace
 
 # Moving window between screens 
 bindsym $mod+$alt+$wm_setting_key_left move container to output left; focus left;
@@ -249,12 +193,6 @@ bindsym $mod+$wm_setting_key_right       focus right
 
 # Resize window (you can also use the mouse for that)
 mode "modify" {
-#	These bindings trigger as soon as you enter the modify mode
-
-#	Pressing left will shrink the window’s width.
-#	Pressing right will grow the window’s width.
-#	Pressing up will shrink the window’s height.
-#	Pressing down will grow the window’s height.
 	bindsym $smod+$wm_setting_key_left  resize shrink width 10 px or 10 ppt
 	bindsym $smod+$wm_setting_key_down  resize grow height 10 px or 10 ppt
 	bindsym $smod+$wm_setting_key_up    resize shrink height 10 px or 10 ppt
