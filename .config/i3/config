@@ -3,9 +3,9 @@ set $mod                             Mod4
 set $alt			     									 Mod1
 set $smod                            Shift
 set $wm_setting_font                 pango:Hack, Semibold 11
-set $wm_setting_gap_width            5
-set $wm_setting_gap_heigth           5
-set $wm_setting_border_size          2
+set $wm_setting_gap_width            10
+set $wm_setting_gap_heigth           10
+set $wm_setting_border_size          1
 set $wm_setting_key_left             h
 set $wm_setting_key_down             j
 set $wm_setting_key_up               k
