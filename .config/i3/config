@@ -291,7 +291,7 @@ bindsym $mod+i exec xrandr-invert-colors -s 0
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$smod+u restart
 
-bindsym $mod+$smod+x exec --no-startup-id i3lock -t -u --color 000000
+bindsym $mod+$smod+x exec --no-startup-id i3lock --color 000000
 
 # Open i3 config directory in text editor
 bindsym $mod+$smod+c exec $wm_setting_app_text_editor ~/dotfiles
