@@ -1,15 +1,15 @@
 ### Variables for settings ###
-set $mod                             Mod4
-set $alt			     									 Mod1
-set $smod                            Shift
-set $wm_setting_font                 pango:Hack, Semibold 11
-set $wm_setting_gap_width            10
-set $wm_setting_gap_heigth           10
-set $wm_setting_border_size          1
-set $wm_setting_key_left             h
-set $wm_setting_key_down             j
-set $wm_setting_key_up               k
-set $wm_setting_key_right            l
+set $mod	Mod4
+set $alt	Mod1
+set $smod	Shift
+set $wm_setting_font	pango:Hack, Semibold 11
+set $wm_setting_gap_width	10
+set $wm_setting_gap_heigth	10
+set $wm_setting_border_size	1
+set $wm_setting_key_left	h
+set $wm_setting_key_down	j
+set $wm_setting_key_up	k
+set $wm_setting_key_right	l
 
 set $wm_setting_app_terminal      	  kitty
 set $wm_setting_app_browser       	  brave-browser
@@ -19,7 +19,35 @@ set $wm_setting_app_password_manager 	~/Bitwarden*.AppImage
 set $wm_setting_app_launcher      	  rofi -show drun
 set $wm_setting_app_compositor    	  picom
 
-set $wm_color_border_active_bg       #ff69b4 
+# Catppuccin Mocha for i3: https://github.com/catppuccin/i3/blob/main/themes/catppuccin-mocha
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+set $wm_color_border_active_bg       ff69b4 
 set $wm_color_border_active_fg       #8a2be2 
 set $wm_color_border_inactive_bg     #8a2be2
 set $wm_color_border_inactive_fg     #dda0dd 
@@ -51,6 +79,8 @@ set $bar_color_workspace_inactive_fg #ffffff
 
 set $bar_color_workspace_urgent_bg   #ff1493 
 set $bar_color_workspace_urgent_fg   #ffffff 
+
+
 
 # Prevents focus from wrapping around when you reach the end of the workspace list
 focus_wrapping no
@@ -85,7 +115,7 @@ exec_always nohup flameshot &
 # Start a terminal emulator
 bindsym $mod+n exec $wm_setting_app_terminal 
 
-# Start a web browser
+# Open specific profile with Brave Browser
 bindsym $mod+v exec $wm_setting_app_browser --profile-directory="Default"
 bindsym $mod+s exec $wm_setting_app_browser --profile-directory="Profile 1"
 
@@ -228,36 +258,36 @@ default_floating_border pixel $wm_setting_border_size
 smart_borders on
 
 ### Colors ###
-# class                 border                       backg                   text                         indicator                    child_border
-client.focused          $wm_color_border_active_bg   $wm_color_border_active_bg   $wm_color_border_active_fg   $wm_color_border_active_bg   $wm_color_border_active_bg
-client.focused_inactive $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
-client.unfocused        $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
-client.urgent           $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
-client.placeholder      $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
-client.background       $wm_color_background
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
-### i3bar ###
+# bar
 bar {
-	#output		 $main_monitor
-	position         $bar_setting_position
-	mode             $bar_setting_mode
-	font             $bar_setting_font
-	separator_symbol $bar_setting_separator
-	status_command   $bar_setting_statusCommand
-	tray_output      $bar_setting_trayoutput
+position         $bar_setting_position
+mode             $bar_setting_mode
+font             $bar_setting_font
+separator_symbol $bar_setting_separator
+status_command   $bar_setting_statusCommand
+tray_output      $bar_setting_trayoutput
+  colors {
+    background         $base
+    statusline         $text
+    focused_statusline $text
+    focused_separator  $base
 
-	colors {
-		background   $bar_color_background
-		statusline   $bar_color_statusline
-		separator    $bar_color_separator
-
-		focused_workspace  $bar_color_workspace_focused_bg  $bar_color_workspace_focused_bg  $bar_color_workspace_focused_fg
-		active_workspace   $bar_color_workspace_active_bg   $bar_color_workspace_active_bg   $bar_color_workspace_active_fg
-		inactive_workspace $bar_color_workspace_inactive_bg $bar_color_workspace_inactive_bg $bar_color_workspace_inactive_fg
-		urgent_workspace   $bar_color_workspace_urgent_bg   $bar_color_workspace_urgent_bg   $bar_color_workspace_urgent_fg
-	}
-	workspace_buttons yes
-    workspace_min_width 240
+    # target           border bg        text
+    focused_workspace  $base  $mauve    $crust
+    active_workspace   $base  $surface2 $text
+    inactive_workspace $base  $base     $text
+    urgent_workspace   $base  $red      $crust
+  }
+  workspace_buttons yes
+  workspace_min_width 240
 }
 
 bindsym $mod+$alt+b exec --no-startup-id i3-msg bar mode toggle

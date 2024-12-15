@@ -118,4 +118,8 @@ fi
 
 # . "$HOME/.cargo/env"
 
+export PATH="$PATH:/opt/nvim/"
+
+eval "$(starship init bash)"
+
 #eval "$(zellij setup --generate-auto-start bash)"
