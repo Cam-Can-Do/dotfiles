@@ -15,7 +15,6 @@ set $wm_setting_app_terminal      	  ~/WezTerm*.AppImage
 set $wm_setting_app_browser       	  brave-browser
 set $wm_setting_app_text_editor		 		code
 set $wm_setting_app_notes							~/Obsidian*.AppImage
-set $wm_setting_app_password_manager 	~/Bitwarden*.AppImage
 set $wm_setting_app_launcher      	  rofi -show drun
 set $wm_setting_app_compositor    	  picom
 
@@ -118,7 +117,6 @@ bindsym $mod+n exec $wm_setting_app_terminal
 
 # Open specific profile with Brave Browser
 bindsym $mod+v exec $wm_setting_app_browser --profile-directory="Default"
-bindsym $mod+s exec $wm_setting_app_browser --profile-directory="Profile 1"
 
 # Open Anki
 bindsym $mod+a exec ~/anki*/anki
@@ -136,13 +134,16 @@ bindsym $mod+f exec thunar ~
 bindsym $mod+c exec $wm_setting_app_text_editor
 
 # Open password manager
-bindsym $mod+b exec $wm_setting_app_password_manager
+bindsym $mod+b exec ~/.config/i3/scripts/bwmenu
 
 # Start a program launcher
 bindsym $mod+d exec $wm_setting_app_launcher
 
 # Take screenshot
 bindsym $mod+$smod+s exec flameshot gui
+
+# Kill a running process using rofi
+bindsym $mod+s exec ~/.config/i3/scripts/rofi-kill-process.sh
 
 # Run a window compositor (for effects like transparency or full VSync)
 exec_always --no-startup-id $wm_setting_app_compositor
