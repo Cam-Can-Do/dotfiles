@@ -119,7 +119,11 @@ fi
 # . "$HOME/.cargo/env"
 
 export PATH="$PATH:/opt/nvim/"
+export EDITOR=nvim
 
 eval "$(starship init bash)"
 
-#eval "$(zellij setup --generate-auto-start bash)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

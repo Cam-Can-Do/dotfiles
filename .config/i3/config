@@ -11,7 +11,7 @@ set $wm_setting_key_down	j
 set $wm_setting_key_up	k
 set $wm_setting_key_right	l
 
-set $wm_setting_app_terminal      	  kitty
+set $wm_setting_app_terminal      	  ~/WezTerm*.AppImage
 set $wm_setting_app_browser       	  brave-browser
 set $wm_setting_app_text_editor		 		code
 set $wm_setting_app_notes							~/Obsidian*.AppImage
@@ -91,7 +91,7 @@ focus_wrapping no
 exec_always xinput --set-prop "Kingston HyperX Pulsefire Surge" 'libinput Accel Speed' -1
 
 # Set mouse buttons (alternate between left and right handed)
-exec_always [ $(($(date +%-d) % 2)) -eq 0 ] && xmodmap -e "pointer = 1 2 3" || xmodmap -e "pointer = 3 2 1"
+#exec_always [ $(($(date +%-d) % 2)) -eq 0 ] && xmodmap -e "pointer = 1 2 3" || xmodmap -e "pointer = 3 2 1"
 
 # autotiling: https://github.com/nwg-piotr/autotiling
 exec_always ~/.config/i3/scripts/autotiling
@@ -101,6 +101,7 @@ exec_always ~/.config/i3/scripts/desk_setup.sh --no-startup-id
 
 # Display Wallpaper
 exec_always feh --bg-fill --randomize ~/.config/wallpapers/* --no-startup-id
+#exec_always feh --bg-fill --randomize ~/.config/h_wallpapers/* --no-startup-id
 
 # Start nmcli (needed for ProtonVPN client to work)
 exec_always nm-applet
@@ -124,6 +125,9 @@ bindsym $mod+a exec ~/anki*/anki
 
 # Open notes
 bindsym $mod+$alt+n exec $wm_setting_app_notes
+
+# Open Lunatask
+bindsym $mod+t exec ~/Lunatask*.AppImage
 
 # Open file manager
 bindsym $mod+f exec thunar ~
@@ -150,12 +154,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# These don't work yet...
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 ### MONITORS ###
 set $main_monitor HDMI-1-0
