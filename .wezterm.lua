@@ -20,7 +20,21 @@ config.hide_tab_bar_if_only_one_tab = true
 config.audible_bell = 'Disabled'
 
 config.font_size = 14
-config.color_scheme = 'Catppuccin Mocha'
+
+-- Default theme
+config.color_scheme = "Catppuccin Mocha"
+
+wezterm.on("toggle-colors", function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+
+  if overrides.color_scheme == "Builtin Light" then
+    overrides.color_scheme = "Catppuccin Mocha"
+  else
+    overrides.color_scheme = "Builtin Light"
+  end
+
+  window:set_config_overrides(overrides)
+end)
 
 -- Add keybindings
 
@@ -29,6 +43,12 @@ config.pane_focus_follows_mouse = true
 config.leader = { key = 'a', mods = 'CTRL' } 
 
 config.keys = {
+  {
+    key = "i",
+    mods = "CTRL",
+    action = wezterm.action.EmitEvent("toggle-colors"),
+  },
+
   -- Tabs
   {
     key = 't',
