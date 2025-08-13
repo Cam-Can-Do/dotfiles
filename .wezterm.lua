@@ -14,6 +14,7 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 config.max_fps = 144
+-- config.front_end = "Software" -- Necessary in virtualized environments like VMs without a GPU
 
 config.hide_tab_bar_if_only_one_tab = true
 
