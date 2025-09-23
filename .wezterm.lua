@@ -41,74 +41,73 @@ end)
 
 config.pane_focus_follows_mouse = true
 
-config.leader = { key = 'a', mods = 'CTRL' } 
 
 config.keys = {
   {
     key = "i",
-    mods = "CTRL",
+    mods = "ALT|SHIFT|CTRL",
     action = wezterm.action.EmitEvent("toggle-colors"),
   },
 
   -- Tabs
   {
     key = 't',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = act.SpawnTab 'CurrentPaneDomain',
   },
   {
     key = 'w',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = act.CloseCurrentTab { confirm = true },
   },
   {
     key = '1',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(0),
   },
   {
     key = '2',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(1),
   },
   {
     key = '3',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(2),
   },
   {
     key = '4',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(3),
   },
   {
     key = '5',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(4),
   },
   {
     key = '6',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(5),
   },
   {
     key = '7',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(6),
   },
   {
     key = '8',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(7),
   },
   {
     key = '9',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(8),
   },
   {
     key = '0',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.ActivateTab(9),
   },
 
@@ -118,22 +117,22 @@ config.keys = {
   -- Panes
   {
     key = 'h',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.SplitPane { direction = 'Left', size = { Percent = 50 } },
   },
   {
     key = 'v',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.SplitPane { direction = 'Down', size = { Percent = 50 } },
   },
   {
     key = 'x',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.CloseCurrentPane { confirm = true },
   },
   {
     key = 'f',
-    mods = 'CTRL',
+    mods = 'ALT|SHIFT|CTRL',
     action = wezterm.action.TogglePaneZoomState,
   },
 
@@ -159,27 +158,30 @@ config.keys = {
     action = wezterm.action.ActivatePaneDirection 'Down',
   },
 
-  -- Copy Mode
+  -- Pane resizing
   {
-    key = 'c',
-    mods = 'LEADER',
-    action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
+    key = 'LeftArrow',
+    mods = 'ALT|SHIFT|CTRL',
+    action = wezterm.action.AdjustPaneSize { 'Left', 5 },
   },
   {
-    key = 'y',
-    mods = 'LEADER',
-    action = wezterm.action.QuickSelect,
+    key = 'RightArrow',
+    mods = 'ALT|SHIFT|CTRL',
+    action = wezterm.action.AdjustPaneSize { 'Right', 5 },
   },
   {
-    key = '[',
-    mods = 'LEADER',
-    action = wezterm.action.ActivateCopyMode,
+    key = 'UpArrow',
+    mods = 'ALT|SHIFT|CTRL',
+    action = wezterm.action.AdjustPaneSize { 'Up', 5 },
   },
   {
-    key = 'f',
-    mods = 'ALT',
-    action = wezterm.action.TogglePaneZoomState,
+    key = 'DownArrow',
+    mods = 'ALT|SHIFT|CTRL',
+    action = wezterm.action.AdjustPaneSize { 'Down', 5 },
   },
+
 }
+
+
 
 return config

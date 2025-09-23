@@ -1,5 +1,5 @@
 ### Variables for settings ###
-set $mod	Mod4
+set $mod	Mod4 
 set $alt	Mod1
 set $smod	Shift
 set $wm_setting_font	pango:Hack, Semibold 11
@@ -326,7 +326,8 @@ bindsym $mod+i exec xrandr-invert-colors -s 0
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$smod+u restart
 
-bindsym $mod+$smod+x exec --no-startup-id i3lock --color 000000
+# Power menu (F13)
+bindsym XF86Tools exec ~/.config/i3/scripts/rofi-power.sh
 
 # Open i3 config directory in text editor
 bindsym $mod+$smod+c exec $wm_setting_app_text_editor ~/dotfiles
